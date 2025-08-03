@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Actify Challenge</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="./assets/logo.png" alt="Logo" />
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#challenges">Challenges</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </ul>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- Home Section -->
+    <section id="home">
+      <h1>Welcome to the Motivation & Action Platform for Daily Challenges!</h1>
+      <p>Let’s turn productivity into a habit together.</p>
+      <div class="buttons">
+        <button class="btn" onclick="startChallenge()">Start Challenge</button>
+        <button class="btn" onclick="discoverMore()">Discover More</button>
+      </div>
+      <div class="gif-group">
+        <img src="https://media.giphy.com/media/d5E7MmF0OUS7dI7eoM/giphy.gif" alt="GIF 1">
+        <img src="https://media.giphy.com/media/6RrGJniqA0zD07caO1/giphy.gif" alt="GIF 2">
+        <img src="https://media.giphy.com/media/1n6DhTystRO39Sk3qZ/giphy.gif" alt="GIF 3">
+        <img src="https://media.giphy.com/media/KJdz11owIhrEyQVwZi/giphy.gif" alt="GIF 4">
+        <img src="https://media.giphy.com/media/89OUtWjhN8zzzdQh5U/giphy.gif" alt="GIF 5">
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+  <div class="about-container">
+    <h1>About Actify</h1>
+    <p>Actify is your daily companion for building strong habits and staying motivated through action-driven challenges.</p>
+    <p>Our mission is to make productivity feel engaging and fun — one challenge at a time.</p>
+    <p>We believe in the power of small, consistent steps that lead to big changes over time. Whether it's health, mindset, or focus — Actify helps you stay on track.</p>
+    <p>Each challenge is designed with purpose: to inspire action, create awareness, and build momentum throughout your day.</p>
+    <p>Join thousands of others turning goals into habits with daily, bite-sized tasks and motivating visuals.</p>
+  </div>
+</section>
+
+   
+    <!-- Challenges Section -->
+     <div id="challenges" class="challanges-container">
+    <h1>Daily Challenges</h1>
+    <div class="challenge-cards">
+    <div class="challenge-card">
+    <h3>Focus Hour</h3>
+    <p>Work for 60 minutes with zero distractions.</p>
+    </div>
+
+    <div class="challenge-card">
+    <h3>Hydration Goal</h3>
+    <p>Drink 8 glasses of water today.</p>
+    </div>
+
+    <div class="challenge-card">
+    <h3>Gratitude Journal</h3>
+    <p>Write down 3 things you're grateful for.</p>
+    </div>
+
+    <div class="challenge-card">
+    <h3>Morning Stretch</h3>
+    <p>Start your day with 10 minutes of stretching.</p>
+    </div>
+
+    <div class="challenge-card">
+    <h3>Digital Detox</h3>
+    <p>Avoid social media for 2 hours today.</p>
+    </div>
+ 
+    <div class="challenge-card">
+    <h3>Walk Break</h3>
+    <p>Take a 20-minute walk outdoors.</p>
+    </div>
+
+    <div class="challenge-card">
+    <h3>Read & Reflect</h3>
+    <p>Read 10 pages of a book and write a takeaway.</p>
+    </div>
+
+    <div class="challenge-card">
+    <h3>Sleep Tracker</h3>
+    <p>Go to bed 30 minutes earlier than usual.</p>
+    </div>
+     </div>
+
+   </div>
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+      <div class="contact-container">
+        <h1>Contact Us</h1>
+        <p>We’d love to hear your feedback or questions!</p>
+        <form class="contact-form">
+          <input type="text" placeholder="Your Name" required />
+          <input type="email" placeholder="Your Email" required />
+          <textarea placeholder="Your Message" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>© 2025 Actify. All rights reserved.</p>
+      <div class="socials">
+        <a href="#"><img src="./assets/youtube.png" alt="Youtube" /></a>
+        <a href="#"><img src="./assets/twitter.png" alt="Twitter" /></a>
+        <a href="#"><img src="./assets/instagram.png" alt="Instagram" /></a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
