@@ -22,7 +22,18 @@
   function load() {
     try {
       const data = JSON.parse(localStorage.getItem(STORAGE_KEY));
-      return Array.isArray(data) ? data : [];
+      if (!Array.isArray(data)) return [];
+      // Keep only well-formed habits; drop anything malformed or edited by hand.
+      const seen = new Set();
+      return data
+        .filter((h) => h && typeof h.id === 'string' && typeof h.name === 'string' && h.name.trim() && Array.isArray(h.done))
+        .map((h) => ({
+          id: h.id,
+          name: h.name.trim().slice(0, 60),
+          done: [...new Set(h.done.filter((d) => typeof d === 'string' && /^d{4}-d{2}-d{2}$/.test(d)))],
+          created: typeof h.created === 'string' ? h.created : dayKey(),
+        }))
+        .filter((h) => !seen.has(h.id) && seen.add(h.id));
     } catch (e) {
       return [];
     }
@@ -108,14 +119,17 @@
     const today = dayKey();
     const wrap = document.createElement('div');
     wrap.className = 'week';
-    wrap.setAttribute('aria-label', 'Last 7 days');
+    wrap.setAttribute('role', 'img');
+    let doneCount = 0;
     for (let i = 6; i >= 0; i--) {
       const d = addDays(today, -i);
       const dot = document.createElement('span');
       dot.className = 'dot' + (done.has(d) ? ' on' : '');
       dot.title = d + (done.has(d) ? ' — done' : ' — not done');
+      if (done.has(d)) doneCount++;
       wrap.appendChild(dot);
     }
+    wrap.setAttribute('aria-label', `Last 7 days: done on ${doneCount} of 7`);
     return wrap;
   }
 
@@ -134,7 +148,7 @@
       check.type = 'button';
       check.className = 'check';
       check.setAttribute('aria-pressed', String(isDone));
-      check.setAttribute('aria-label', `Mark "${habit.name}" as ${isDone ? 'not done' : 'done'} today`);
+      check.setAttribute('aria-label', `Done today: ${habit.name}`);
       check.textContent = isDone ? '✓' : '';
       check.addEventListener('click', () => toggleToday(habit.id));
 
@@ -240,6 +254,8 @@
   document.addEventListener('visibilitychange', () => {
     if (!document.hidden) render();
   });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
 
   render();
 })();

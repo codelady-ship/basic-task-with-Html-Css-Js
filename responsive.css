@@ -2,6 +2,8 @@
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
+    margin-left: auto; /* keep it on the right: .navbar is space-between with 3 children */
+    order: 2; /* after the (collapsed) <nav>, so no gap is left at the edge */
   }
 
   .nav-links {
