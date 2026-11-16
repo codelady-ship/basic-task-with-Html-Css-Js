@@ -2,132 +2,141 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Actify Challenge</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Actify — Daily Habit Tracker</title>
+  <meta name="description" content="Actify is a small habit tracker: add daily habits, check them off, keep streaks and pick ready-made challenges. Everything is saved in your browser." />
+  <link rel="canonical" href="https://codelady-ship.github.io/basic-task-with-Html-Css-Js/" />
+  <meta name="theme-color" content="#0d0d0f" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Actify — Daily Habit Tracker" />
+  <meta property="og:description" content="Add daily habits, check them off and keep your streaks. Built with plain HTML, CSS and JavaScript." />
+  <meta property="og:url" content="https://codelady-ship.github.io/basic-task-with-Html-Css-Js/" />
+  <meta property="og:image" content="https://codelady-ship.github.io/basic-task-with-Html-Css-Js/docs/screenshot.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Actify — Daily Habit Tracker" />
+  <meta name="twitter:description" content="Add daily habits, check them off and keep your streaks." />
+  <meta name="twitter:image" content="https://codelady-ship.github.io/basic-task-with-Html-Css-Js/docs/screenshot.png" />
+
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="responsive.css" />
 </head>
 <body>
+  <a class="skip-link" href="#tracker">Skip to the tracker</a>
 
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo">
-      <img src="./assets/logo.png" alt="Logo" />
-    </div>
-    <ul class="nav-links" id="navLinks">
-      <a href="#home">Home</a>
-      <a href="#challenges">Challenges</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </ul>
-    <div class="hamburger" id="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </nav>
+  <header class="navbar">
+    <a class="logo" href="#home" aria-label="Actify home">
+      <img src="assets/logo.png" alt="Actify logo" width="160" height="42" />
+    </a>
+    <button class="hamburger" id="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+    <nav aria-label="Main">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#tracker">Tracker</a></li>
+        <li><a href="#challenges">Challenges</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <div class="container">
-    <!-- Home Section -->
-    <section id="home">
-      <h1>Welcome to the Motivation & Action Platform for Daily Challenges!</h1>
-      <p>Let’s turn productivity into a habit together.</p>
-      <div class="buttons">
-        <button class="btn" onclick="startChallenge()">Start Challenge</button>
-        <button class="btn" onclick="discoverMore()">Discover More</button>
+  <main>
+    <!-- Home -->
+    <section id="home" class="hero">
+      <div class="hero-text">
+        <p class="eyebrow">Small steps, every day</p>
+        <h1>Build habits that stick with <span class="accent">Actify</span></h1>
+        <p class="lead">Add the habits you want to keep, tick them off each day and watch your streaks grow. No sign-up — your data stays in this browser.</p>
+        <div class="buttons">
+          <a class="btn btn-primary" href="#tracker">Start tracking</a>
+          <a class="btn btn-ghost" href="#challenges">Browse challenges</a>
+        </div>
       </div>
-      <div class="gif-group">
-        <img src="https://media.giphy.com/media/d5E7MmF0OUS7dI7eoM/giphy.gif" alt="GIF 1">
-        <img src="https://media.giphy.com/media/6RrGJniqA0zD07caO1/giphy.gif" alt="GIF 2">
-        <img src="https://media.giphy.com/media/1n6DhTystRO39Sk3qZ/giphy.gif" alt="GIF 3">
-        <img src="https://media.giphy.com/media/KJdz11owIhrEyQVwZi/giphy.gif" alt="GIF 4">
-        <img src="https://media.giphy.com/media/89OUtWjhN8zzzdQh5U/giphy.gif" alt="GIF 5">
+      <ul class="hero-badges" aria-label="Example habits">
+        <li><span aria-hidden="true">💧</span> Hydrate</li>
+        <li><span aria-hidden="true">📚</span> Read</li>
+        <li><span aria-hidden="true">🧘</span> Stretch</li>
+        <li><span aria-hidden="true">🚶</span> Walk</li>
+        <li><span aria-hidden="true">🌙</span> Sleep early</li>
+      </ul>
+    </section>
+
+    <!-- Tracker -->
+    <section id="tracker" class="tracker-section" aria-labelledby="tracker-title">
+      <h2 id="tracker-title">My habits</h2>
+      <p class="section-sub" id="todayLabel">Today</p>
+
+      <form class="habit-form" id="habitForm" autocomplete="off">
+        <label class="visually-hidden" for="habitInput">New habit</label>
+        <input id="habitInput" type="text" maxlength="60" placeholder="e.g. Drink 8 glasses of water" required />
+        <button class="btn btn-primary" type="submit">Add habit</button>
+      </form>
+      <p class="form-error" id="habitError" role="alert"></p>
+
+      <div class="stats" aria-live="polite">
+        <div class="stat"><span class="stat-num" id="statDone">0</span><span class="stat-label">done today</span></div>
+        <div class="stat"><span class="stat-num" id="statTotal">0</span><span class="stat-label">habits</span></div>
+        <div class="stat"><span class="stat-num" id="statBest">0</span><span class="stat-label">best streak</span></div>
+      </div>
+      <div class="progress" role="progressbar" aria-label="Habits done today" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+
+      <ul class="habit-list" id="habitList"></ul>
+      <p class="empty" id="emptyState">No habits yet. Add one above or pick a challenge below.</p>
+    </section>
+
+    <!-- Challenges -->
+    <section id="challenges" class="challenges-section" aria-labelledby="challenges-title">
+      <h2 id="challenges-title">Daily challenges</h2>
+      <p class="section-sub">Pick one and it becomes a habit in your tracker.</p>
+      <div class="challenge-cards" id="challengeCards">
+        <article class="challenge-card"><h3>Focus Hour</h3><p>Work for 60 minutes with zero distractions.</p><button class="btn btn-small" type="button" data-habit="Focus Hour">Add to my habits</button></article>
+        <article class="challenge-card"><h3>Hydration Goal</h3><p>Drink 8 glasses of water today.</p><button class="btn btn-small" type="button" data-habit="Hydration Goal">Add to my habits</button></article>
+        <article class="challenge-card"><h3>Gratitude Journal</h3><p>Write down 3 things you're grateful for.</p><button class="btn btn-small" type="button" data-habit="Gratitude Journal">Add to my habits</button></article>
+        <article class="challenge-card"><h3>Morning Stretch</h3><p>Start your day with 10 minutes of stretching.</p><button class="btn btn-small" type="button" data-habit="Morning Stretch">Add to my habits</button></article>
+        <article class="challenge-card"><h3>Digital Detox</h3><p>Avoid social media for 2 hours today.</p><button class="btn btn-small" type="button" data-habit="Digital Detox">Add to my habits</button></article>
+        <article class="challenge-card"><h3>Walk Break</h3><p>Take a 20-minute walk outdoors.</p><button class="btn btn-small" type="button" data-habit="Walk Break">Add to my habits</button></article>
+        <article class="challenge-card"><h3>Read &amp; Reflect</h3><p>Read 10 pages of a book and write a takeaway.</p><button class="btn btn-small" type="button" data-habit="Read &amp; Reflect">Add to my habits</button></article>
+        <article class="challenge-card"><h3>Earlier Bedtime</h3><p>Go to bed 30 minutes earlier than usual.</p><button class="btn btn-small" type="button" data-habit="Earlier Bedtime">Add to my habits</button></article>
       </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about-section">
-  <div class="about-container">
-    <h1>About Actify</h1>
-    <p>Actify is your daily companion for building strong habits and staying motivated through action-driven challenges.</p>
-    <p>Our mission is to make productivity feel engaging and fun — one challenge at a time.</p>
-    <p>We believe in the power of small, consistent steps that lead to big changes over time. Whether it's health, mindset, or focus — Actify helps you stay on track.</p>
-    <p>Each challenge is designed with purpose: to inspire action, create awareness, and build momentum throughout your day.</p>
-    <p>Join thousands of others turning goals into habits with daily, bite-sized tasks and motivating visuals.</p>
-  </div>
-</section>
-
-   
-    <!-- Challenges Section -->
-     <div id="challenges" class="challanges-container">
-    <h1>Daily Challenges</h1>
-    <div class="challenge-cards">
-    <div class="challenge-card">
-    <h3>Focus Hour</h3>
-    <p>Work for 60 minutes with zero distractions.</p>
-    </div>
-
-    <div class="challenge-card">
-    <h3>Hydration Goal</h3>
-    <p>Drink 8 glasses of water today.</p>
-    </div>
-
-    <div class="challenge-card">
-    <h3>Gratitude Journal</h3>
-    <p>Write down 3 things you're grateful for.</p>
-    </div>
-
-    <div class="challenge-card">
-    <h3>Morning Stretch</h3>
-    <p>Start your day with 10 minutes of stretching.</p>
-    </div>
-
-    <div class="challenge-card">
-    <h3>Digital Detox</h3>
-    <p>Avoid social media for 2 hours today.</p>
-    </div>
- 
-    <div class="challenge-card">
-    <h3>Walk Break</h3>
-    <p>Take a 20-minute walk outdoors.</p>
-    </div>
-
-    <div class="challenge-card">
-    <h3>Read & Reflect</h3>
-    <p>Read 10 pages of a book and write a takeaway.</p>
-    </div>
-
-    <div class="challenge-card">
-    <h3>Sleep Tracker</h3>
-    <p>Go to bed 30 minutes earlier than usual.</p>
-    </div>
-     </div>
-
-   </div>
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-      <div class="contact-container">
-        <h1>Contact Us</h1>
-        <p>We’d love to hear your feedback or questions!</p>
-        <form class="contact-form">
-          <input type="text" placeholder="Your Name" required />
-          <input type="email" placeholder="Your Email" required />
-          <textarea placeholder="Your Message" required></textarea>
-          <button type="submit">Send Message</button>
-        </form>
+    <!-- About -->
+    <section id="about" class="about-section" aria-labelledby="about-title">
+      <h2 id="about-title">About Actify</h2>
+      <div class="about-container">
+        <p>Actify is a small practice project for building daily habits through simple, action-driven challenges.</p>
+        <p>The idea is that small, consistent steps add up. Each habit you add can be checked off once a day; doing it on consecutive days builds a streak, and missing a day resets it.</p>
+        <p>There is no account and no server: habits and history are stored in your browser's <code>localStorage</code>, so they stay on this device until you delete them.</p>
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <p>© 2025 Actify. All rights reserved.</p>
-      <div class="socials">
-        <a href="#"><img src="./assets/youtube.png" alt="Youtube" /></a>
-        <a href="#"><img src="./assets/twitter.png" alt="Twitter" /></a>
-        <a href="#"><img src="./assets/instagram.png" alt="Instagram" /></a>
-      </div>
-    </footer>
-  </div>
+    <!-- Contact -->
+    <section id="contact" class="contact-section" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact</h2>
+      <p class="section-sub">Questions or feedback? Write a message — it opens in your email app.</p>
+      <form class="contact-form" id="contactForm">
+        <label for="cName">Name</label>
+        <input id="cName" name="name" type="text" required />
+        <label for="cMessage">Message</label>
+        <textarea id="cMessage" name="message" required></textarea>
+        <button class="btn btn-primary" type="submit">Open in email app</button>
+        <p class="form-note">This site has no backend. The button prepares an email to the project author; nothing is sent until you press send in your mail app.</p>
+      </form>
+    </section>
+  </main>
 
-  <script src="script.js"></script>
+  <footer class="footer">
+    <p>© 2025 Actify — a practice project by <a href="https://github.com/codelady-ship">codelady-ship</a>.</p>
+    <a class="footer-link" href="https://github.com/codelady-ship/basic-task-with-Html-Css-Js">View source on GitHub</a>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
 </body>
 </html>
