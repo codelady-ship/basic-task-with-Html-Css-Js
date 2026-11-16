@@ -30,7 +30,7 @@
         .map((h) => ({
           id: h.id,
           name: h.name.trim().slice(0, 60),
-          done: [...new Set(h.done.filter((d) => typeof d === 'string' && /^d{4}-d{2}-d{2}$/.test(d)))],
+          done: [...new Set(h.done.filter((d) => typeof d === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(d)))],
           created: typeof h.created === 'string' ? h.created : dayKey(),
         }))
         .filter((h) => !seen.has(h.id) && seen.add(h.id));
